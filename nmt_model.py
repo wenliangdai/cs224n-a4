@@ -170,7 +170,7 @@ class NMT(nn.Module):
         ###         https://pytorch.org/docs/stable/tensors.html#torch.Tensor.permute
 
         X = self.model_embeddings.source(
-            torch.LongTensor(source_padded).transpose(0, 1)
+            source_padded.transpose(0, 1)
         ).transpose(0, 1)
         X_packed = pack_padded_sequence(input=X, lengths=source_lengths)
         enc_hiddens, (last_hidden, last_cell) = self.encoder(X_packed)
